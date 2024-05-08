@@ -6,6 +6,9 @@ def home(request):
     return render(request,'home/wellcome.html')
 
 def access(request):
+    return render(request, "home/sign-in.html")
+
+def sign_out(request):
     return render(request, "home/sign-out.html")
 
 def cookie_plant(request):

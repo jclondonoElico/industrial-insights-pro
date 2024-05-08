@@ -492,16 +492,19 @@ var data_performance = [
   {
     type: "indicator",
     mode: "number+gauge+delta",
-    value: 3640,
+    value: 3762,
     domain: { x: [0.25, 1.0], y: [0.5, 0.7] },
     title: {
-      text: "Aceptadas",
+      text: "Producidas",
       font: chart_font,
     },
     delta: {
       reference: 4720, 
       position: "buttom",
-      font: chart_font
+      font: chart_font,
+      increasing: { color: "#1CA71C" }, 
+      decreasing: { color: "#FB0D0D" },
+      suffix: ' und'
     },
     gauge: {
       shape: "bullet",
@@ -518,16 +521,16 @@ var data_performance = [
       //borderwidth:3,
       threshold: {
 
-        line: { color: "#00A08B", width: 3 },
+        line: { color: "#000000", width: 3 },
 
-        thickness: 1.0,
+        thickness: 0.9,
 
         value: 4720
 
       },
     },
     number: {
-      //suffix: " aceptadas",
+      suffix: " und",
       font: chart_font
     },
   },
@@ -551,7 +554,7 @@ var layout_performance = {
       yref: 'paper',
       x: 4720/6500,
       y: 0.42,
-      text: 'Estándar 4720',
+      text: 'Estándar 4720 und',
       xanchor: 'auto',
       yanchor: 'middle',
       //x: 0.26,

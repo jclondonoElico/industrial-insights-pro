@@ -99,7 +99,7 @@ var layout_trend_energia = {
       gridwidth: 2,
   },
   //showgrid: false,  // Desactivar cuadrícul
-  height: 285,
+  height: 200,
   //width: "150%",
   margin: { t: 0, r: 0, l: 50, b: 0 },
   paper_bgcolor: "#141824",
@@ -201,7 +201,7 @@ var layout_trend_eficiencia = {
       gridwidth: 2,
   },
   //showgrid: false,  // Desactivar cuadrícul
-  height: 260,
+  height: 200,
   //width: "150%",
   margin: { t: 0, r: 0, l: 50, b: 50 },
   paper_bgcolor: "#141824",
@@ -215,3 +215,163 @@ var layout_trend_eficiencia = {
 Plotly.newPlot('trend_eficiencia', data_trend_eficiencia, layout_trend_eficiencia, config_responsive);
 
 //---------------------------------------Trend Eficiencia energética - end-----------------------------------------------
+
+//--------------------------------------Consumo energía vs estándar - start-----------------------------------------------
+
+var data_energy_consumption = [
+  {
+    type: "indicator",
+    mode: "number+gauge+delta",
+    value: 11.55,
+    domain: { x: [0.25, 1.0], y: [0.5, 0.7] },
+    title: {
+      text: "Consumida",
+      font: chart_font,
+    },
+    delta: {
+      reference: 9.4, 
+      position: "buttom",
+      font: chart_font,
+      suffix: ' kWh',
+      increasing: { color: "#FB0D0D" },
+      decreasing: { color: "#1CA71C" }
+    },
+    gauge: {
+      shape: "bullet",
+      axis: {
+        range: [0, 20.9],
+        visible: false
+      },
+      bgcolor: "#1C2231",
+      bar: {
+        color: "#2E91E5",
+        thickness: 1,
+      },
+      bordercolor: "#1C2231",
+      //borderwidth:3,
+      threshold: {
+
+        line: { color: "#000000", width: 3 },
+
+        thickness: 0.9,
+
+        value: 9.4
+
+      },
+    },
+    number: {
+      suffix: " kWh",
+      font: chart_font
+    },
+  },
+];
+
+var layout_energy_consumption = {
+  //width: 600,
+  height: 200,
+  margin: { t: 0, r: 15, l: 25, b: 0 },
+  paper_bgcolor: "#141824",
+  plot_bgcolor: "#141824",
+  annotations: [
+    {
+      font: {
+        size: 15,
+        family: "Nunito Sans",
+        color: "#ffffff"
+      },
+      showarrow: false,
+      xref: 'paper',
+      yref: 'paper',
+      x: 9.4/20.9,
+      y: 0.42,
+      text: 'Estándar 9.4 kWh',
+      xanchor: 'auto',
+      yanchor: 'middle',
+      //x: 0.26,
+      //y: 5
+    }],
+};
+
+Plotly.newPlot('energy_consumption', data_energy_consumption, layout_energy_consumption, config_responsive);
+
+//--------------------------------------Consumo energía vs estándar - end-----------------------------------------------
+
+//--------------------------------------Consumo energía index vs estándar - start-----------------------------------------------
+
+/* var data_consumption_index = [
+  {
+    type: "indicator",
+    mode: "number+gauge+delta",
+    value: 0.003,
+    domain: { x: [0.25, 1], y: [0.5, 0.7] },
+    title: {
+      text: "Consumida",
+      font: chart_font,
+    },
+    delta: {
+      reference: 0.002, 
+      position: "buttom",
+      font: chart_font,
+      //suffix: ' kWh/und',
+      increasing: { color: "#FB0D0D" },
+      decreasing: { color: "#1CA71C" }
+    },
+    gauge: {
+      shape: "bullet",
+      axis: {
+        range: [0, 0.003],
+        visible: false
+      },
+      bgcolor: "#1C2231",
+      bar: {
+        color: "#2E91E5",
+        thickness: 1,
+      },
+      bordercolor: "#1C2231",
+      //borderwidth:3,
+      threshold: {
+
+        line: { color: "#000000", width: 3 },
+
+        thickness: 0.9,
+
+        value: 0.002
+
+      },
+    },
+    number: {
+      suffix: " kWh/und",
+      font: chart_font
+    },
+  },
+];
+
+var layout_consumption_index = {
+  //width: 600,
+  height: 200,
+  margin: { t: 0, r: 0, l: 25, b: 0 },
+  paper_bgcolor: "#141824",
+  plot_bgcolor: "#141824",
+  annotations: [
+    {
+      font: {
+        size: 15,
+        family: "Nunito Sans",
+        color: "#ffffff"
+      },
+      showarrow: false,
+      xref: 'paper',
+      yref: 'paper',
+      x: 0.002/0.003,
+      y: 0.42,
+      text: 'Estándar 0.002 kWh/und',
+      xanchor: 'auto',
+      yanchor: 'middle',
+      //x: 0.26,
+      //y: 5
+    }],
+};
+
+Plotly.newPlot('consumption_index', data_consumption_index, layout_consumption_index, config_responsive);
+ */
+//--------------------------------------Consumo energía index vs estándar - end-----------------------------------------------
