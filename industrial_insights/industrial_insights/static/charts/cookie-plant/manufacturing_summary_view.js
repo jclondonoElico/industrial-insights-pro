@@ -24,94 +24,6 @@ var chart_font = {
 //---------------------------------------PLotly Configuration - end-----------------------------------------------
 
 
-//---------------------------------------OEE KPI - start-----------------------------------------------
-// var data_oee = [
-//   {
-//     type: "indicator",
-//     mode: "number",
-//     value: 68.7,
-//     domain: { x: [0, 1], y: [0, 1] },
-//     //delta: { reference: 4720, position: "right", increasing: { color: "#2CA02C" }, decreasing: { color: "#D62728" } },
-//     number: {
-//         //prefix: "OEE ",
-//         suffix: "%",
-//           font: {
-//             family: "Nunito Sans",  // Cambia "Arial" por la fuente que desees
-//             //size: 28,         // Tamaño de la fuente en píxeles
-//             color: "#FFFFFF" // Color de la fuente, reemplaza "your-color" con el color deseado
-//           }
-
-//     },
-//   }
-// ];
-
-// var layout_oee = {
-//   //width: 600,
-//   //height: 320,
-//   height: 100,
-//   margin: { t: 0, b: 0, l: 10, r: 0 },
-//   paper_bgcolor: "#141824"
-// };
-
-// Plotly.newPlot('oee', data_oee, layout_oee, config_responsive);
-
-//---------------------------------------OEE KPI - end-----------------------------------------------
-
-
-//---------------------------------------OEE all - start-----------------------------------------------
-// var data_oee_all = [{
-//     x: [97, 77.1, 91.9],
-//     y: ['Calidad ', 'Rendimiento ', 'Disponibilidad '],
-//     width: [0.45,0.45,0.45],
-//     name: 'Unidades Producidas',
-//     orientation: 'h',
-//     marker: {
-//         color: ['#2E91E5', '#511CFB', '#1616A7'],
-//         //colorbar : {ticklabelposition: "inside top"},
-//         //opacity: 1.0,
-//     },
-//     type: 'bar',
-//     text: ['97%', '77.1%', '91.9%'],
-//     textposition: 'outside',
-//     hoverinfo: 'none',
-//     textfont: {
-//         family: "Nunito Sans", // Establece la familia de la fuente
-//         size: 15, // Establece el tamaño de la fuente
-//         color: '#ffffff' // Establece el color de la fuente
-//     }
-// }];
-
-
-// var layout_oee_all = {
-//     barcornerradius: 5,
-//     bargap: 0.1,
-//     margin: {t: 0, "b": 0, l: 100, r: 0},
-//     height: 120,
-//     xaxis: {
-//         range: [-1, 115],
-//         showgrid: false,
-//         showticklabels: false,
-//         showline: false,
-//         zeroline: false
-//     },
-//     yaxis: {
-//         ticklabelposition: "outside",
-//         //title: 'Horas',
-//         showgrid: false, // Ocultar cuadrícula en el eje y
-//         showticklabels: true,  // Ocultar marcas del eje y
-//         tickfont: {
-//             family: "Nunito Sans", // Establece la familia de la fuente
-//             size: 14, // Establece el tamaño de la fuente
-//             color: '#ffffff' // Establece el color de la fuente
-//         }
-//     },
-//     showgrid: false,
-//     paper_bgcolor: "#141824",
-//     plot_bgcolor: "#141824",
-//     };
-
-// Plotly.newPlot('oee_all', data_oee_all, layout_oee_all, config_responsive);
-//---------------------------------------OEE all - end-----------------------------------------------
 
 
 //---------------------------------------Complience - start-----------------------------------------------
@@ -274,59 +186,6 @@ var layout_trend_oee = {
 
 Plotly.newPlot('trend_oee', data_trend_oee, layout_trend_oee, config_responsive);
 //---------------------------------------OEE Trends - end-----------------------------------------------
-
-
-//--------------------------------------Compliance - start-----------------------------------------------
-// var data_cumplimiento_unidades = [
-//   {
-//     type: "indicator",
-//     mode: "number+gauge+delta",
-//     gauge: {
-//       shape: "bullet",
-//       axis: { range: [null, 6500], tickfont: { color: '#FFFFFF', family: "Nunito Sans" }, visible: false },
-//       bgcolor: "#1C2231",
-//       bar: { color: "#2E91E5", thickness: 1 },
-//       bordercolor: "#1C2231",
-//       threshold: {
-//         line: { color: "#1616A7", width: 3, gradient: { yanchor: "vertical" } },
-//         thickness: 0.9,
-//         value: 4720
-//       },
-//     },
-//     value: 3640,
-//     domain: { x: [0, 1], y: [0, 1] },
-//     delta: { reference: 4720, position: "top", increasing: { color: "#00FE35" }, decreasing: { color: "#FB0D0D" } },
-//     number: {
-//           font: {
-//             family: "Nunito Sans",  // Cambia "Arial" por la fuente que desees
-//             size: 25,         // Tamaño de la fuente en píxeles
-//             color: "#FFFFFF" // Color de la fuente, reemplaza "your-color" con el color deseado
-//           }
-
-//     },
-//     title: {
-//       text: 'Rendimiento',
-//       align: 'center',
-//       font: {
-//         family: "Nunito Sans",  // Cambia "Arial" por la fuente que desees
-//         size: 15,         // Tamaño de la fuente en píxeles
-//         color: "#FFFFFF" // Color de la fuente, reemplaza "your-color" con el color deseado
-//       },
-//     },
-//   }
-// ];
-
-// var layout_cumplimiento_unidades = {
-//   //width: 600,
-//   //height: 320,
-//   height: 40,
-//   margin: { t: 10, b: 10, l: 100, r: 5 },
-//   paper_bgcolor: "#141824"
-// };
-
-// Plotly.newPlot('cumplimiento_unidades', data_cumplimiento_unidades, layout_cumplimiento_unidades, config_responsive);
-//--------------------------------------Compliance - end-----------------------------------------------
-
 
 //--------------------------------------Availability pie - start-----------------------------------------------
 var data_disponibilidad = [{
@@ -625,38 +484,7 @@ var layout_full_oee = {
 Plotly.newPlot('full_oee', data_full_oee, layout_full_oee, config_responsive);
 //--------------------------------------Full OEE - end-----------------------------------------------
 
-//--------------------------------------test- start-----------------------------------------------
-// var data = [{
 
-//   type: "sunburst",
-
-//   labels: ["Operativo", "No Operativo", "Inactivo", "Disponible"],
-
-//   parents: ["Disponible", "Disponible", "", ""],
-
-//   values:  [351, 49, 35, 400],
-
-//   outsidetextfont: {size: 20, color: "#377eb8"},
-
-//   leaf: {opacity: 0.4},
-
-//   marker: {line: {width: 2}},
-
-// }];
-
-// var layout = {
-
-//   margin: {l: 0, r: 0, b: 0, t: 0},
-//   height: 500,
-//   paper_bgcolor: "#141824",
-
-// };
-  
-  
-  
-// Plotly.newPlot('disponibilidad_test', data, layout, config_responsive)
-
-//--------------------------------------test- end-----------------------------------------------
 
 //--------------------------------------rendimeinto start-----------------------------------------------
 

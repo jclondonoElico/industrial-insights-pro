@@ -24,94 +24,6 @@ var chart_font = {
 //---------------------------------------PLotly Configuration - end-----------------------------------------------
 
 
-//---------------------------------------OEE KPI - start-----------------------------------------------
-// var data_oee = [
-//   {
-//     type: "indicator",
-//     mode: "number",
-//     value: 68.7,
-//     domain: { x: [0, 1], y: [0, 1] },
-//     //delta: { reference: 4720, position: "right", increasing: { color: "#2CA02C" }, decreasing: { color: "#D62728" } },
-//     number: {
-//         //prefix: "OEE ",
-//         suffix: "%",
-//           font: {
-//             family: "Nunito Sans",  // Cambia "Arial" por la fuente que desees
-//             //size: 28,         // Tamaño de la fuente en píxeles
-//             color: "#FFFFFF" // Color de la fuente, reemplaza "your-color" con el color deseado
-//           }
-
-//     },
-//   }
-// ];
-
-// var layout_oee = {
-//   //width: 600,
-//   //height: 320,
-//   height: 100,
-//   margin: { t: 0, b: 0, l: 10, r: 0 },
-//   paper_bgcolor: "#141824"
-// };
-
-// Plotly.newPlot('oee', data_oee, layout_oee, config_responsive);
-
-//---------------------------------------OEE KPI - end-----------------------------------------------
-
-
-//---------------------------------------OEE all - start-----------------------------------------------
-// var data_oee_all = [{
-//     x: [97, 77.1, 91.9],
-//     y: ['Calidad ', 'Rendimiento ', 'Disponibilidad '],
-//     width: [0.45,0.45,0.45],
-//     name: 'Unidades Producidas',
-//     orientation: 'h',
-//     marker: {
-//         color: ['#2E91E5', '#511CFB', '#1616A7'],
-//         //colorbar : {ticklabelposition: "inside top"},
-//         //opacity: 1.0,
-//     },
-//     type: 'bar',
-//     text: ['97%', '77.1%', '91.9%'],
-//     textposition: 'outside',
-//     hoverinfo: 'none',
-//     textfont: {
-//         family: "Nunito Sans", // Establece la familia de la fuente
-//         size: 15, // Establece el tamaño de la fuente
-//         color: '#ffffff' // Establece el color de la fuente
-//     }
-// }];
-
-
-// var layout_oee_all = {
-//     barcornerradius: 5,
-//     bargap: 0.1,
-//     margin: {t: 0, "b": 0, l: 100, r: 0},
-//     height: 120,
-//     xaxis: {
-//         range: [-1, 115],
-//         showgrid: false,
-//         showticklabels: false,
-//         showline: false,
-//         zeroline: false
-//     },
-//     yaxis: {
-//         ticklabelposition: "outside",
-//         //title: 'Horas',
-//         showgrid: false, // Ocultar cuadrícula en el eje y
-//         showticklabels: true,  // Ocultar marcas del eje y
-//         tickfont: {
-//             family: "Nunito Sans", // Establece la familia de la fuente
-//             size: 14, // Establece el tamaño de la fuente
-//             color: '#ffffff' // Establece el color de la fuente
-//         }
-//     },
-//     showgrid: false,
-//     paper_bgcolor: "#141824",
-//     plot_bgcolor: "#141824",
-//     };
-
-// Plotly.newPlot('oee_all', data_oee_all, layout_oee_all, config_responsive);
-//---------------------------------------OEE all - end-----------------------------------------------
 
 
 //---------------------------------------Complience - start-----------------------------------------------
@@ -131,11 +43,11 @@ var gCumplimiento = new JustGage({
     gaugeColor: "#1C2231", // Cambia el color del fondo del tacómetro
     decimals: 1,
     gaugeWidthScale:0.3,
-    labelFontColor: "#f3f5f4",
+    labelFontColor: "#ffffff",
     symbol: '%',
     labelMinFontSize: 18,
     pointer: false,
-    //relativeGaugeSize: true,
+    relativeGaugeSize: true,
     donut: true,
     minLabelMinFontSize: 15,
     maxLabelMinFontSize: 15,
@@ -152,11 +64,11 @@ var trend_oee = {
   type: 'line',
   mode: 'lines+markers',
   name: 'OEE',
-  line: { width: 2, color: '#EB663B' },
+  line: { width: 2, color: '#00A08B' },
   marker: {
         symbol: 'circle',  // Símbolo de marcador: círculo
         size: 5,          // Tamaño de los marcadores en píxeles
-        color: '#1CA71C',     // Color de los marcadores
+        color: '#00A08B',     // Color de los marcadores
         opacity: 1.0       // Opacidad de los marcadores
   }
 };
@@ -167,11 +79,11 @@ var trend_disponibilidad = {
   type: 'line',
   mode: 'lines+markers',
   name: 'Disponibilidad',
-  line: { width: 2, color: '#1616A7' },
+  line: { width: 2, color: '#FC0080' },
   marker: {
         symbol: 'circle',  // Símbolo de marcador: círculo
         size: 5,          // Tamaño de los marcadores en píxeles
-        color: '#1616A7',     // Color de los marcadores
+        color: '#FC0080',     // Color de los marcadores
         opacity: 1.0       // Opacidad de los marcadores
   }
 };
@@ -226,9 +138,9 @@ var layout_trend_oee = {
         showgrid: true,
         //standoff: 50,
         tickfont: {
-            family: "'Open Sans', sans-serif", // Establece la familia de la fuente
+            family: "Nunito Sans", // Establece la familia de la fuente
             size: 15, // Establece el tamaño de la fuente
-            color: '#f3f5f4' // Establece el color de la fuente
+            color: '#ffffff' // Establece el color de la fuente
         },
         gridcolor: '#1e2130',
         gridwidth: 2,
@@ -238,17 +150,17 @@ var layout_trend_oee = {
             text: '%',
             position: 'v',
             font: {
-                family: "'Open Sans', sans-serif", // Establece la familia de la fuente
+                family: "Nunito Sans" ,// Establece la familia de la fuente
                 size: 15, // Establece el tamaño de la fuente
-                color: '#f3f5f4' // Establece el color de la fuente
+                color: '#ffffff' // Establece el color de la fuente
             }
         },
         //range: [0.0, 25.0],
         showgrid: true,
         tickfont: {
-            family: "'Open Sans', sans-serif", // Establece la familia de la fuente Open Sans
+            family: "Nunito Sans", // Establece la familia de la fuente Open Sans
             size: 15, // Establece el tamaño de la fuente
-            color: '#f3f5f4' // Establece el color de la fuente
+            color: '#ffffff' // Establece el color de la fuente
         },
         gridcolor: '#1e2130',
         gridwidth: 2,
@@ -261,9 +173,9 @@ var layout_trend_oee = {
     plot_bgcolor: "#141824",
     legend: {
         font: {
-            family: "'Open Sans', sans-serif", // Establece la familia de la fuente
-            size: 15, // Establece el tamaño de la fuente
-            color: '#f3f5f4' // Establece el color de la fuente
+            family: "Nunito Sans", // Establece la familia de la fuente
+            //size: 15, // Establece el tamaño de la fuente
+            color: '#ffffff' // Establece el color de la fuente
         },
         orientation: 'h',
         y: -0.2
@@ -275,65 +187,13 @@ var layout_trend_oee = {
 Plotly.newPlot('trend_oee', data_trend_oee, layout_trend_oee, config_responsive);
 //---------------------------------------OEE Trends - end-----------------------------------------------
 
-
-//--------------------------------------Compliance - start-----------------------------------------------
-// var data_cumplimiento_unidades = [
-//   {
-//     type: "indicator",
-//     mode: "number+gauge+delta",
-//     gauge: {
-//       shape: "bullet",
-//       axis: { range: [null, 6500], tickfont: { color: '#FFFFFF', family: "Nunito Sans" }, visible: false },
-//       bgcolor: "#1C2231",
-//       bar: { color: "#2E91E5", thickness: 1 },
-//       bordercolor: "#1C2231",
-//       threshold: {
-//         line: { color: "#1616A7", width: 3, gradient: { yanchor: "vertical" } },
-//         thickness: 0.9,
-//         value: 4720
-//       },
-//     },
-//     value: 3640,
-//     domain: { x: [0, 1], y: [0, 1] },
-//     delta: { reference: 4720, position: "top", increasing: { color: "#00FE35" }, decreasing: { color: "#FB0D0D" } },
-//     number: {
-//           font: {
-//             family: "Nunito Sans",  // Cambia "Arial" por la fuente que desees
-//             size: 25,         // Tamaño de la fuente en píxeles
-//             color: "#FFFFFF" // Color de la fuente, reemplaza "your-color" con el color deseado
-//           }
-
-//     },
-//     title: {
-//       text: 'Rendimiento',
-//       align: 'center',
-//       font: {
-//         family: "Nunito Sans",  // Cambia "Arial" por la fuente que desees
-//         size: 15,         // Tamaño de la fuente en píxeles
-//         color: "#FFFFFF" // Color de la fuente, reemplaza "your-color" con el color deseado
-//       },
-//     },
-//   }
-// ];
-
-// var layout_cumplimiento_unidades = {
-//   //width: 600,
-//   //height: 320,
-//   height: 40,
-//   margin: { t: 10, b: 10, l: 100, r: 5 },
-//   paper_bgcolor: "#141824"
-// };
-
-// Plotly.newPlot('cumplimiento_unidades', data_cumplimiento_unidades, layout_cumplimiento_unidades, config_responsive);
-//--------------------------------------Compliance - end-----------------------------------------------
-
-
 //--------------------------------------Availability pie - start-----------------------------------------------
 var data_disponibilidad = [{
   type: "pie",
   values: [35, 351, 49],
   labels: ["Inactivo", "Operativo", "No Operativo"],
-  textinfo: "label+percent",
+  //textinfo: "label+percent",
+  textinfo: "percent",
   textposition: "auto",
   automargin: true,
   hole: .0,
@@ -344,7 +204,8 @@ var data_disponibilidad = [{
   },
 
   marker: {
-    colors: ['#1C2231', '#2E91E5', '#EB663B'] // Personaliza los colores de las porciones
+    colors: ['#1C2231', '#00A08B', '#2E91E5'],
+    line: {width: 0.5, color: "#000000"}
   }
 
 }]
@@ -353,11 +214,11 @@ var layout_disponibilidad  = {
   height: 200,
   //width: 400,
   margin: {"t": 0, "b": 0, "l": 0, "r": 0},
-  showlegend: false,
+  showlegend: true,
   annotations: [
     {
       font: {
-        size: 12,
+        size: 15,
         family: "Nunito Sans",
       },
       showarrow: false,
@@ -365,7 +226,17 @@ var layout_disponibilidad  = {
       //x: 0.26,
       //y: 0.5
     }],
-   paper_bgcolor: "#141824"
+   paper_bgcolor: "#141824",
+    legend: {
+      font: {
+          family: "'Open Sans', sans-serif", // Establece la familia de la fuente
+          //size: 15, // Establece el tamaño de la fuente
+          color: '#ffffff' // Establece el color de la fuente
+      },
+      orientation: 'h',
+      //y: -0.05,
+      //x:0
+    }
 };
 
 Plotly.newPlot('disponibilidad', data_disponibilidad, layout_disponibilidad, config_responsive)
@@ -377,10 +248,11 @@ var data_calidad = [
   {
     x: ['Producción'],
     y: [3752],
-    width: [0.2],
-    name: 'Producidas',
+    width: [0.15],
+    name: 'Unidades Producidas',
     marker: {
-        color: ['#A777F1'], //#EB663B
+        color: ['#2E91E5'], 
+        line: {width: 0.5, color: "#000000"}
         //colorbar : {ticklabelposition: "inside top"},
         //opacity: 1.0,
     },
@@ -397,10 +269,10 @@ var data_calidad = [
   {
     x: ['Producción'],
     y: [3640],
-    width: [0.2],
-    name: 'Aceptadas',
+    width: [0.15],
+    name: 'Unidades Aceptadas',
     marker: {
-        color: ['#2E91E5'],
+        color: ['#00A08B'],
         //colorbar : {ticklabelposition: "inside top"},
         //opacity: 1.0,
     },
@@ -417,8 +289,8 @@ var data_calidad = [
   {
     x: ['Producción'],
     y: [112],
-    width: [0.2],
-    name: 'Rechazadas',
+    width: [0.15],
+    name: 'Unidades Rechazadas',
     marker: {
         color: ['#1C2231'],
         //colorbar : {ticklabelposition: "inside top"},
@@ -438,7 +310,7 @@ var data_calidad = [
 
 var layout_calidad = {
     barcornerradius: 2,
-    //bargap: 0.5,
+    bargap: 0.4,
     margin: {t: 0, "b": 30, l: 0, r: 0},
     height: 200,
     barmode: "group",
@@ -462,7 +334,7 @@ var layout_calidad = {
         //showticklabels: true,  // Ocultar marcas del eje y
         tickfont: {
             family: "Nunito Sans", // Establece la familia de la fuente
-            size: 14, // Establece el tamaño de la fuente
+            size: 15, // Establece el tamaño de la fuente
             color: '#ffffff' // Establece el color de la fuente
         }
     },
@@ -473,10 +345,11 @@ var layout_calidad = {
       font: {
           family: "'Open Sans', sans-serif", // Establece la familia de la fuente
           //size: 15, // Establece el tamaño de la fuente
-          color: '#f3f5f4' // Establece el color de la fuente
+          color: '#ffffff' // Establece el color de la fuente
       },
       orientation: 'h',
-      y: -0.05
+      //y: -0.05,
+      //x: 0.15
   }
     };
 
@@ -508,6 +381,7 @@ var data_full_oee = [
       bar: {
         color: "#2E91E5",
         thickness: 1,
+        line: {width:0, color:"#000000"},
       },
       bordercolor: "#1C2231",
       //borderwidth:3,
@@ -608,40 +482,9 @@ var layout_full_oee = {
 };
 
 Plotly.newPlot('full_oee', data_full_oee, layout_full_oee, config_responsive);
-//--------------------------------------Fuell OEE - end-----------------------------------------------
+//--------------------------------------Full OEE - end-----------------------------------------------
 
-//--------------------------------------test- start-----------------------------------------------
-// var data = [{
 
-//   type: "sunburst",
-
-//   labels: ["Operativo", "No Operativo", "Inactivo", "Disponible"],
-
-//   parents: ["Disponible", "Disponible", "", ""],
-
-//   values:  [351, 49, 35, 400],
-
-//   outsidetextfont: {size: 20, color: "#377eb8"},
-
-//   leaf: {opacity: 0.4},
-
-//   marker: {line: {width: 2}},
-
-// }];
-
-// var layout = {
-
-//   margin: {l: 0, r: 0, b: 0, t: 0},
-//   height: 500,
-//   paper_bgcolor: "#141824",
-
-// };
-  
-  
-  
-// Plotly.newPlot('disponibilidad_test', data, layout, config_responsive)
-
-//--------------------------------------test- end-----------------------------------------------
 
 //--------------------------------------rendimeinto start-----------------------------------------------
 
@@ -652,7 +495,7 @@ var data_performance = [
     value: 3640,
     domain: { x: [0.25, 1.0], y: [0.5, 0.7] },
     title: {
-      text: "Rendimiento",
+      text: "Aceptadas",
       font: chart_font,
     },
     delta: {
@@ -675,7 +518,7 @@ var data_performance = [
       //borderwidth:3,
       threshold: {
 
-        line: { color: "#EB663B", width: 2 },
+        line: { color: "#00A08B", width: 3 },
 
         thickness: 1.0,
 
@@ -684,7 +527,7 @@ var data_performance = [
       },
     },
     number: {
-      //suffix: "%",
+      //suffix: " aceptadas",
       font: chart_font
     },
   },
@@ -695,6 +538,25 @@ var layout_performance = {
   height: 200,
   margin: { t: 0, r: 15, l: 25, b: 0 },
   paper_bgcolor: "#141824",
+  plot_bgcolor: "#141824",
+  annotations: [
+    {
+      font: {
+        size: 15,
+        family: "Nunito Sans",
+        color: "#ffffff"
+      },
+      showarrow: false,
+      xref: 'paper',
+      yref: 'paper',
+      x: 4720/6500,
+      y: 0.42,
+      text: 'Estándar 4720',
+      xanchor: 'auto',
+      yanchor: 'middle',
+      //x: 0.26,
+      //y: 5
+    }],
 };
 
 Plotly.newPlot('performance', data_performance, layout_performance, config_responsive);
