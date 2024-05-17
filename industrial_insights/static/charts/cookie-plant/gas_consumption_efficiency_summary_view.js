@@ -26,11 +26,11 @@ var chart_font = {
 
 //--------------------------------------consumo eléctrico start-----------------------------------------------
 var trend_energia_consumida = {
-  x: [1, 2, 3, 4],
-  y: [0.0, 5.87, 22, 22.5],
+  x: [],
+  y: [],
   type: 'line',
-  mode: 'lines+markers',
-  name: 'Energía Consumidad',
+  mode: 'lines', //+markers
+  name: 'Gas Consumido',
   line: { width: 2, color: '#2E91E5' },
   marker: {
         symbol: 'circle',  // Símbolo de marcador: círculo
@@ -41,11 +41,11 @@ var trend_energia_consumida = {
 };
 
 var trend_energia_estandar = {
-  x: [1, 2, 3, 4],
-  y: [0.0, 4.87, 14.3, 20.9],
+  x: [],
+  y: [],
   type: 'line',
-  mode: 'lines+markers',
-  name: 'Energía Estándar',
+  mode: 'lines', //+markers
+  name: 'Gas Estándar',
   line: { width: 2, color: '#00A08B' },
   marker: {
         symbol: 'circle',  // Símbolo de marcador: círculo
@@ -56,11 +56,11 @@ var trend_energia_estandar = {
 };
 
 var trend_energia_referencia = {
-  x: [1, 2, 3, 4],
-  y: [20.9, 20.9, 20.9, 20.9],
+  x: [],
+  y: [],
   type: 'line',
-  mode: 'lines+markers',
-  name: 'Energía de Referencia',
+  mode: 'lines', //+markers
+  name: 'Gas de Referencia',
   line: { width: 2, color: '#FC0080' },
   marker: {
         symbol: 'circle',  // Símbolo de marcador: círculo
@@ -86,12 +86,8 @@ var layout_trend_energia = {
   },
   yaxis: {
       title: {
-          text:'kWh',
-          font: {
-              family: "'Open Sans', sans-serif", // Establece la familia de la fuente
-              size: 15, // Establece el tamaño de la fuente
-              color: '#f3f5f4' // Establece el color de la fuente
-          },
+          text:'m3',
+          font: chart_font,
       },
       //range: [0.0, 25.0],
       tickfont: chart_font,
@@ -108,7 +104,7 @@ var layout_trend_energia = {
   legend: {
       orientation: 'h',
       //x: 0.1,
-      y: -0.2,
+      y: -0.4,
       font: {
         family: "Nunito Sans", // Establece la familia de la fuente
         //size: 15, // Establece el tamaño de la fuente
@@ -160,7 +156,7 @@ var data_trend_eficiencia = [
     x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
     y: [100.0, 98.5, 97.6, 97.0, 94, 94, 90, 90, 90, 89.5, 89.5],
     type: 'line',
-    mode: 'lines+markers',
+    mode: 'lines', //+markers
     name: 'Eficiencia',
     line: { color: "#00A08B", width: 2 },
     marker: {
@@ -175,28 +171,16 @@ var data_trend_eficiencia = [
 var layout_trend_eficiencia = {
   //title: 'Consumida vs Estándar vs Referencia',
   xaxis: {
-      tickfont: {
-          family: "'Open Sans', sans-serif", // Establece la familia de la fuente
-          size: 15, // Establece el tamaño de la fuente
-          color: '#f3f5f4' // Establece el color de la fuente
-      },
+      tickfont: chart_font,
       gridcolor: '#1e2130',
       gridwidth: 2,
   },
   yaxis: {
       title: {
           text: '%',
-          font: {
-              family: "'Open Sans', sans-serif", // Establece la familia de la fuente
-              size: 15, // Establece el tamaño de la fuente
-              color: '#f3f5f4' // Establece el color de la fuente
-          },
+          font: chart_font,
       },
-      tickfont: {
-          family: "'Open Sans', sans-serif", // Establece la familia de la fuente
-          size: 15, // Establece el tamaño de la fuente
-          color: '#f3f5f4' // Establece el color de la fuente
-      },
+      tickfont: chart_font,
       gridcolor: '#1e2130',
       gridwidth: 2,
   },
@@ -225,14 +209,14 @@ var data_energy_consumption = [
     value: 11.55,
     domain: { x: [0.25, 1.0], y: [0.5, 0.7] },
     title: {
-      text: "Consumida",
+      text: "Consumido",
       font: chart_font,
     },
     delta: {
       reference: 9.4, 
       position: "buttom",
       font: chart_font,
-      suffix: ' kWh',
+      suffix: ' m3',
       increasing: { color: "#FB0D0D" },
       decreasing: { color: "#1CA71C" }
     },
@@ -260,7 +244,7 @@ var data_energy_consumption = [
       },
     },
     number: {
-      suffix: " kWh",
+      suffix: " m3",
       font: chart_font
     },
   },
@@ -274,11 +258,7 @@ var layout_energy_consumption = {
   plot_bgcolor: "#141824",
   annotations: [
     {
-      font: {
-        size: 15,
-        family: "Nunito Sans",
-        color: "#ffffff"
-      },
+      font: chart_font,
       showarrow: false,
       xref: 'paper',
       yref: 'paper',
@@ -375,3 +355,71 @@ var layout_consumption_index = {
 Plotly.newPlot('consumption_index', data_consumption_index, layout_consumption_index, config_responsive);
  */
 //--------------------------------------Consumo energía index vs estándar - end-----------------------------------------------
+
+
+function updateData() {
+  // Realizar una petición AJAX para obtener los datos más recientes
+  fetch('https://industrial-insights-jamesgarcia.pythonanywhere.com/goem/api/GasConsumptionEfficiencyData/')  // Reemplaza con la URL correcta de tu vista
+      .then(response => response.json())
+      .then(data => {
+          // Actualizar solo los datos de las trazas
+
+          var last_gas_consumption_field = document.getElementById('last_gas_consumption_field');
+          last_gas_consumption_field.textContent = data.last_gas_consumption.toFixed(1) + ' m3';
+
+          var last_reference_gas_consumption_field = document.getElementById('last_reference_gas_consumption_field');
+          last_reference_gas_consumption_field.textContent = data.last_reference_gas_consumption.toFixed(1) + ' m3';
+
+          var last_standard_gas_consumption_field = document.getElementById('last_standard_gas_consumption_field');
+          last_standard_gas_consumption_field.textContent = data.last_standard_gas_consumption.toFixed(1) + ' m3';
+
+          var last_gas_overconsumption_field = document.getElementById('last_gas_overconsumption_field');
+          last_gas_overconsumption_field.textContent = data.last_gas_overconsumption.toFixed(1) + ' m3';
+
+          var last_m3_price_field = document.getElementById('last_m3_price_field');
+          last_m3_price_field.textContent = data.last_m3_price.toFixed(0) + ' COP';
+
+          var last_gas_cost_field = document.getElementById('last_gas_cost_field');
+          last_gas_cost_field.textContent = data.last_gas_cost.toFixed(0) + ' COP';
+
+          var last_gas_energy_cost_overrun_field = document.getElementById('last_gas_energy_cost_overrun_field');
+          last_gas_energy_cost_overrun_field.textContent = data.last_gas_energy_cost_overrun.toFixed(0) + ' COP';
+
+          var last_gas_consumption_index_field = document.getElementById('last_gas_consumption_index_field');
+          last_gas_consumption_index_field.textContent = data.last_gas_consumption_index.toFixed(3) + ' m3/und';
+
+          gEficiencia.refresh(data['last_gas_consumption_energy_efficiency']);
+
+          Plotly.update('trend_eficiencia', {
+            x: [data.last_shift_timestamps],
+            y: [data.last_shift_gas_consumption_energy_efficiency]
+          });
+
+
+          Plotly.update('energy_consumption', {
+            value: [data.last_gas_consumption],
+            'delta.reference': [data.last_standard_gas_consumption],
+            'gauge.axis.range': [[0, data.last_reference_gas_consumption]],
+            'gauge.threshold.value': [data.last_standard_gas_consumption]
+
+          });
+
+          layout_energy_consumption.annotations[0].text = `Estándar ${data.last_standard_gas_consumption.toFixed(1)} m3`;
+          layout_energy_consumption.annotations[0].x = data.last_standard_gas_consumption / data.last_reference_gas_consumption;
+          
+          Plotly.relayout('energy_consumption', layout_energy_consumption);
+
+          Plotly.update('trend_energia', {
+            x: [data.last_shift_timestamps],
+            y: [data.last_shift_gas_consumption, data.last_shift_standard_gas_consumption, data.last_shift_reference_gas_consumption]
+          });
+
+          var date_field = document.getElementById('date_field');
+          date_field.textContent = data.formatted_last_shift_start_timestamp + ' - ' + data.formatted_last_shift_end_timestamp;
+
+
+      });
+}
+
+// Actualizar solo los datos cada segundo
+setInterval(updateData, 1000);

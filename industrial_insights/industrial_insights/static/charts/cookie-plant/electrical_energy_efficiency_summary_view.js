@@ -26,10 +26,10 @@ var chart_font = {
 
 //--------------------------------------consumo eléctrico start-----------------------------------------------
 var trend_energia_consumida = {
-  x: [1, 2, 3, 4],
-  y: [0.0, 5.87, 22, 22.5],
+  x: [],
+  y: [],
   type: 'line',
-  mode: 'lines+markers',
+  mode: 'lines', //+markers
   name: 'Energía Consumidad',
   line: { width: 2, color: '#2E91E5' },
   marker: {
@@ -41,10 +41,10 @@ var trend_energia_consumida = {
 };
 
 var trend_energia_estandar = {
-  x: [1, 2, 3, 4],
-  y: [0.0, 4.87, 14.3, 20.9],
+  x: [],
+  y: [],
   type: 'line',
-  mode: 'lines+markers',
+  mode: 'lines', //+markers
   name: 'Energía Estándar',
   line: { width: 2, color: '#00A08B' },
   marker: {
@@ -56,10 +56,10 @@ var trend_energia_estandar = {
 };
 
 var trend_energia_referencia = {
-  x: [1, 2, 3, 4],
-  y: [20.9, 20.9, 20.9, 20.9],
+  x: [],
+  y: [],
   type: 'line',
-  mode: 'lines+markers',
+  mode: 'lines', //+markers
   name: 'Energía de Referencia',
   line: { width: 2, color: '#FC0080' },
   marker: {
@@ -108,7 +108,7 @@ var layout_trend_energia = {
   legend: {
       orientation: 'h',
       //x: 0.1,
-      y: -0.2,
+      y: -0.4,
       font: {
         family: "Nunito Sans", // Establece la familia de la fuente
         //size: 15, // Establece el tamaño de la fuente
@@ -126,7 +126,7 @@ Plotly.newPlot('trend_energia', data_trend_energia, layout_trend_energia, config
 //---------------------------------------Eficiencia energética - start-----------------------------------------------
 var gEficiencia = new JustGage({
   id: "eficiencia",
-  value: 89.5,
+  value: 0.0,
   //width: 200,
   //height: 200,
   min: 0,
@@ -157,10 +157,10 @@ var gEficiencia = new JustGage({
 //---------------------------------------Trend Eficiencia energética - start-----------------------------------------------
 var data_trend_eficiencia = [
   {
-    x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-    y: [100.0, 98.5, 97.6, 97.0, 94, 94, 90, 90, 90, 89.5, 89.5],
+    x: [],
+    y: [],
     type: 'line',
-    mode: 'lines+markers',
+    mode: 'lines', //+markers
     name: 'Eficiencia',
     line: { color: "#00A08B", width: 2 },
     marker: {
@@ -175,28 +175,16 @@ var data_trend_eficiencia = [
 var layout_trend_eficiencia = {
   //title: 'Consumida vs Estándar vs Referencia',
   xaxis: {
-      tickfont: {
-          family: "'Open Sans', sans-serif", // Establece la familia de la fuente
-          size: 15, // Establece el tamaño de la fuente
-          color: '#f3f5f4' // Establece el color de la fuente
-      },
+      tickfont: chart_font,
       gridcolor: '#1e2130',
       gridwidth: 2,
   },
   yaxis: {
       title: {
           text: '%',
-          font: {
-              family: "'Open Sans', sans-serif", // Establece la familia de la fuente
-              size: 15, // Establece el tamaño de la fuente
-              color: '#f3f5f4' // Establece el color de la fuente
-          },
+          font: chart_font,
       },
-      tickfont: {
-          family: "'Open Sans', sans-serif", // Establece la familia de la fuente
-          size: 15, // Establece el tamaño de la fuente
-          color: '#f3f5f4' // Establece el color de la fuente
-      },
+      tickfont: chart_font,
       gridcolor: '#1e2130',
       gridwidth: 2,
   },
@@ -221,15 +209,43 @@ Plotly.newPlot('trend_eficiencia', data_trend_eficiencia, layout_trend_eficienci
 var data_energy_consumption = [
   {
     type: "indicator",
+    mode: "number+gauge",
+    value: 0.0,
+    domain: { x: [0.25, 1], y: [0.28, 0.48] },
+    title: {
+      text: "Estándar",
+      font: chart_font,
+    },
+    gauge: {
+      shape: "bullet",
+      axis: {
+        range: [0, 10.0],
+        visible: false
+      },
+      bgcolor: "#1C2231",
+      bar: {
+        color: "#2E91E5",
+        thickness: 1,
+      },
+      bordercolor: "#1C2231",
+      //borderwidth:3,
+    },
+    number: {
+      suffix: " kWh",
+      font: chart_font
+    },
+  },
+  {
+    type: "indicator",
     mode: "number+gauge+delta",
-    value: 11.55,
-    domain: { x: [0.25, 1.0], y: [0.5, 0.7] },
+    value: 0.0,
+    domain: { x: [0.25, 1], y: [0.54, 0.74] },
     title: {
       text: "Consumida",
       font: chart_font,
     },
     delta: {
-      reference: 9.4, 
+      reference: 0.0, 
       position: "buttom",
       font: chart_font,
       suffix: ' kWh',
@@ -239,7 +255,7 @@ var data_energy_consumption = [
     gauge: {
       shape: "bullet",
       axis: {
-        range: [0, 20.9],
+        range: [0, 10.0],
         visible: false
       },
       bgcolor: "#1C2231",
@@ -255,7 +271,7 @@ var data_energy_consumption = [
 
         thickness: 0.9,
 
-        value: 9.4
+        value: 0.0
 
       },
     },
@@ -272,24 +288,20 @@ var layout_energy_consumption = {
   margin: { t: 0, r: 15, l: 25, b: 0 },
   paper_bgcolor: "#141824",
   plot_bgcolor: "#141824",
-  annotations: [
+/*   annotations: [
     {
-      font: {
-        size: 15,
-        family: "Nunito Sans",
-        color: "#ffffff"
-      },
+      font: chart_font,
       showarrow: false,
       xref: 'paper',
       yref: 'paper',
-      x: 9.4/20.9,
+      x: 0.0,
       y: 0.42,
-      text: 'Estándar 9.4 kWh',
+      text: 'Estándar 0.0 kWh',
       xanchor: 'auto',
       yanchor: 'middle',
       //x: 0.26,
       //y: 5
-    }],
+    }], */
 };
 
 Plotly.newPlot('energy_consumption', data_energy_consumption, layout_energy_consumption, config_responsive);
@@ -375,3 +387,72 @@ var layout_consumption_index = {
 Plotly.newPlot('consumption_index', data_consumption_index, layout_consumption_index, config_responsive);
  */
 //--------------------------------------Consumo energía index vs estándar - end-----------------------------------------------
+
+
+
+function updateData() {
+  // Realizar una petición AJAX para obtener los datos más recientes
+  fetch('https://industrial-insights-jamesgarcia.pythonanywhere.com/goem/api/ElectricalEnergyEfficiencyData/')  // Reemplaza con la URL correcta de tu vista
+      .then(response => response.json())
+      .then(data => {
+          // Actualizar solo los datos de las trazas
+
+          var last_total_energy_consumed_field = document.getElementById('last_total_energy_consumed_field');
+          last_total_energy_consumed_field.textContent = data.last_total_energy_consumed.toFixed(1) + ' kWh';
+
+          var last_reference_total_energy_field = document.getElementById('last_reference_total_energy_field');
+          last_reference_total_energy_field.textContent = data.last_reference_total_energy.toFixed(1) + ' kWh';
+
+          var last_standard_total_energy_field = document.getElementById('last_standard_total_energy_field');
+          last_standard_total_energy_field.textContent = data.last_standard_total_energy.toFixed(1) + ' kWh';
+
+          var last_electrical_overconsumption_field = document.getElementById('last_electrical_overconsumption_field');
+          last_electrical_overconsumption_field.textContent = data.last_electrical_overconsumption.toFixed(1) + ' kWh';
+
+          var last_kwh_price_field = document.getElementById('last_kwh_price_field');
+          last_kwh_price_field.textContent = data.last_kwh_price.toFixed(0) + ' COP';
+
+          var last_electrical_energy_cost_field = document.getElementById('last_electrical_energy_cost_field');
+          last_electrical_energy_cost_field.textContent = data.last_electrical_energy_cost.toFixed(0) + ' COP';
+
+          var last_electrical_energy_cost_overrun_field = document.getElementById('last_electrical_energy_cost_overrun_field');
+          last_electrical_energy_cost_overrun_field.textContent = data.last_electrical_energy_cost_overrun.toFixed(0) + ' COP';
+
+          var last_total_electricity_consumption_index_field = document.getElementById('last_total_electricity_consumption_index_field');
+          last_total_electricity_consumption_index_field.textContent = data.last_total_electricity_consumption_index.toFixed(3) + ' kWh/und';
+
+          gEficiencia.refresh(data['last_total_electrical_energy_efficiency']);
+
+          Plotly.update('trend_eficiencia', {
+            x: [data.last_shift_timestamps],
+            y: [data.last_shift_total_electrical_energy_efficiency]
+          });
+
+          var maxValue = Math.max(data.last_reference_total_energy, data.last_total_energy_consumed);
+          Plotly.update('energy_consumption', {
+            value: [data.last_standard_total_energy, data.last_total_energy_consumed],
+            'delta.reference': [,data.last_standard_total_energy],
+            'gauge.axis.range': [[0, maxValue], [0, maxValue]],
+            'gauge.threshold.value': [,data.last_standard_total_energy]
+
+          });
+
+          //layout_energy_consumption.annotations[0].text = `Estándar ${data.last_standard_total_energy.toFixed(1)} kWh`;
+          //layout_energy_consumption.annotations[0].x = data.last_standard_total_energy / data.last_reference_total_energy;
+          
+          //Plotly.relayout('energy_consumption', layout_energy_consumption);
+
+          Plotly.update('trend_energia', {
+            x: [data.last_shift_timestamps],
+            y: [data.last_shift_total_energy_consumed, data.last_shift_standard_total_energy, data.last_shift_reference_total_energy]
+          });
+
+          var date_field = document.getElementById('date_field');
+          date_field.textContent = data.formatted_last_shift_start_timestamp + ' - ' + data.formatted_last_shift_end_timestamp;
+
+
+      });
+}
+
+// Actualizar solo los datos cada segundo
+setInterval(updateData, 1000);

@@ -10,7 +10,7 @@
             <div class="col-12">
               <div class="mb-8">
                 <h2 class="mb-2">Eficiencia Energética Eléctrica del Turno Actual</h2>
-                <h5 class="text-body-tertiary fw-semibold">4 de Mayo de 2024</h5>
+                <h5 id="date_field" class="text-body-tertiary fw-semibold">4 de Mayo de 2024</h5>
               </div>
 
               <!-- header data - start -->
@@ -18,7 +18,7 @@
                 <div class="col-12 col-md-auto">
                   <div class="d-flex align-items-center"><span class="fa-stack" style="min-height: 46px;min-width: 46px;"><span data-fa-transform="down-4 rotate--10 left-4"></span><span data-fa-transform="up-4 right-3 grow-2"></span><span class="fa-stack-1x fa-solid fa-battery-full text-warning" data-fa-transform="shrink-2 up-8 right-6 grow-10"></span></span>
                     <div class="ms-3">
-                      <h4 class="mb-0">11.55 kWh</h4>
+                      <h4 id="last_total_energy_consumed_field" class="mb-0">0.0 kWh</h4>
                       <p class="text-body-secondary fs-9 mb-0">Energía eléctrica consumida</p>
                     </div>
                   </div>
@@ -26,7 +26,7 @@
                 <div class="col-12 col-md-auto">
                   <div class="d-flex align-items-center"><span class="fa-stack" style="min-height: 46px;min-width: 46px;"><span data-fa-transform="down-4 rotate--10 left-4"></span><span data-fa-transform="up-4 right-3 grow-2"></span><span class="fa-stack-1x fa-solid fa-lightbulb text-info" data-fa-transform="shrink-2 up-8 right-6 grow-10"></span></span>
                     <div class="ms-3">
-                      <h4 class="mb-0">20.9 kWh</h4>
+                      <h4 id="last_reference_total_energy_field" class="mb-0">0.0 kWh</h4>
                       <p class="text-body-secondary fs-9 mb-0">Energía eléctrica de referencia</p>
                     </div>
                   </div>
@@ -34,7 +34,7 @@
                 <div class="col-12 col-md-auto">
                   <div class="d-flex align-items-center"><span class="fa-stack" style="min-height: 46px;min-width: 46px;"><span data-fa-transform="down-4 rotate--10 left-4"></span><span data-fa-transform="up-4 right-3 grow-2"></span><span class="fa-stack-1x fa-solid fa-bolt text-info" data-fa-transform="shrink-2 up-8 right-6 grow-10"></span></span>
                     <div class="ms-3">
-                      <h4 class="mb-0">9.4 kWh</h4>
+                      <h4 id="last_standard_total_energy_field" class="mb-0">0.0 kWh</h4>
                       <p class="text-body-secondary fs-9 mb-0">Energía eléctrica estándar</p>
                     </div>
                   </div>
@@ -42,7 +42,7 @@
                 <div class="col-12 col-md-auto">
                   <div class="d-flex align-items-center"><span class="fa-stack" style="min-height: 46px;min-width: 46px;"><span data-fa-transform="down-4 rotate--10 left-4"></span><span data-fa-transform="up-4 right-3 grow-2"></span><span class="fa-stack-1x fa-solid fa-bolt text-danger" data-fa-transform="shrink-2 up-8 right-6 grow-10"></span></span>
                     <div class="ms-3">
-                      <h4 class="mb-0">2.1 kWh</h4>
+                      <h4 id="last_electrical_overconsumption_field" class="mb-0">0.0 kWh</h4>
                       <p class="text-body-secondary fs-9 mb-0">Sobreconsumo eléctrico</p>
                     </div>
                   </div>
@@ -50,7 +50,7 @@
                 <div class="col-12 col-md-auto">
                   <div class="d-flex align-items-center"><span class="fa-stack" style="min-height: 46px;min-width: 46px;"><span data-fa-transform="down-4 rotate--10 left-4"></span><span data-fa-transform="up-4 right-3 grow-2"></span><span class="fa-stack-1x fa-solid fa-coins text-info" data-fa-transform="shrink-2 up-8 right-6 grow-10"></span></span>
                     <div class="ms-3">
-                      <h4 class="mb-0">900 COP</h4>
+                      <h4 id="last_kwh_price_field" class="mb-0">0 COP</h4>
                       <p class="text-body-secondary fs-9 mb-0">Precio kWh</p>
                     </div>
                   </div>
@@ -58,7 +58,7 @@
                 <div class="col-12 col-md-auto">
                   <div class="d-flex align-items-center"><span class="fa-stack" style="min-height: 46px;min-width: 46px;"><span data-fa-transform="down-4 rotate--10 left-4"></span><span data-fa-transform="up-4 right-3 grow-2"></span><span class="fa-stack-1x fa-solid fa-dollar-sign text-warning" data-fa-transform="shrink-2 up-8 right-6 grow-10"></span></span>
                     <div class="ms-3">
-                      <h4 class="mb-0">10395 COP</h4>
+                      <h4 id="last_electrical_energy_cost_field" class="mb-0">0 COP</h4>
                       <p class="text-body-secondary fs-9 mb-0">Costo consumo eléctrico</p>
                     </div>
                   </div>
@@ -66,7 +66,7 @@
                 <div class="col-12 col-md-auto">
                   <div class="d-flex align-items-center"><span class="fa-stack" style="min-height: 46px;min-width: 46px;"><span data-fa-transform="down-4 rotate--10 left-4"></span><span data-fa-transform="up-4 right-3 grow-2"></span><span class="fa-stack-1x fa-solid fa-exclamation-circle text-danger" data-fa-transform="shrink-2 up-8 right-6 grow-10"></span></span>
                     <div class="ms-3">
-                      <h4 class="mb-0">1890 COP</h4>
+                      <h4 id="last_electrical_energy_cost_overrun_field" class="mb-0">0 COP</h4>
                       <p class="text-body-secondary fs-9 mb-0">Sobrecosto eléctrico</p>
                     </div>
                   </div>
@@ -74,7 +74,7 @@
                 <div class="col-12 col-md-auto">
                   <div class="d-flex align-items-center"><span class="fa-stack" style="min-height: 46px;min-width: 46px;"><span data-fa-transform="down-4 rotate--10 left-4"></span><span data-fa-transform="up-4 right-3 grow-2"></span><span class="fa-stack-1x fa-solid fa-chart-line text-warning" data-fa-transform="shrink-2 up-8 right-6 grow-10"></span></span>
                     <div class="ms-3">
-                      <h4 class="mb-0">0.32 kWh/und</h4>
+                      <h4 id="last_total_electricity_consumption_index_field" class="mb-0">0.0 kWh/und</h4>
                       <p class="text-body-secondary fs-9 mb-0">Índice de consumo</p>
                     </div>
                   </div>

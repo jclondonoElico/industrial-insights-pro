@@ -8,7 +8,7 @@
             <div class="col-12">
               <div class="mb-8">
                 <h2 class="mb-2">Producción del Turno Actual</h2>
-                <h5 class="text-body-tertiary fw-semibold">4 de Mayo de 2024</h5>
+                <h5 id="date_field" class="text-body-tertiary fw-semibold">4 de Mayo de 2024</h5>
               </div>
 
               <!-- línea de división - start -->
@@ -25,7 +25,7 @@
                           <h5 class="mb-1">OEE</h5>
                           <h6 class="text-body-tertiary">Turno actual</h6>
                         </div>
-                        <h4>6500</h4>
+                        <h4></h4>
                       </div>
                       <div class="pb-0 pt-4">
                         <div id="full_oee"></div>
@@ -99,7 +99,8 @@
                           <h5 class="mb-1">Cumplimiento</h5>
                           <h6 class="text-body-tertiary">Meta de producción</h6>
                         </div>
-                        <h4>6500</h4>
+                        <!--<h4>6500</h4>-->
+                        <h4 id="reference_total_units">0 und</h4>
                       </div>
                       <div class="pb-0 pt-4">
                         <div id="cumplimiento" style="height: 200px;"></div>
@@ -115,7 +116,7 @@
                           <h5 class="mb-1">Disponibilidad</h5>
                           <h6 class="text-body-tertiary">Tiempo en minutos</h6>
                         </div>
-                        <h4>91.9%</h4>
+                        <h4 id="availability_field">0%</h4>
                       </div>
                       <div class="pb-0 pt-4">
                         <div id="disponibilidad"></div>
@@ -131,7 +132,7 @@
                           <h5 class="mb-1">Rendimiento</h5>
                           <h6 class="text-body-tertiary">Unidades producidas vs estándar</h6>
                         </div>
-                        <h4>77.1%</h4>
+                        <h4 id="performance_field">0%</h4>
                       </div>
                       <div class="pb-0 pt-4">
                         <div id="performance"></div>
@@ -147,7 +148,7 @@
                           <h5 class="mb-1">Calidad</h5>
                           <h6 class="text-body-tertiary">Unidades producidas</h6>
                         </div>
-                        <h4>97%</h4>
+                        <h4 id="quality_field">0%</h4>
                       </div>
                       <div class="pb-0 pt-4">
                         <div id="calidad"></div>

@@ -62,7 +62,7 @@ var trend_oee = {
   x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   y: [80.5, 60.3, 70.4, 90.1, 90.5, 80.6, 75.7, 70.9, 65.9, 50.6],
   type: 'line',
-  mode: 'lines+markers',
+  mode: 'lines', //+markers
   name: 'OEE',
   line: { width: 2, color: '#00A08B' },
   marker: {
@@ -77,7 +77,7 @@ var trend_disponibilidad = {
   x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   y: [70.5, 40.3, 10.4, 50.1, 60.5, 70.6, 55.7, 50.9, 45.9, 30.6],
   type: 'line',
-  mode: 'lines+markers',
+  mode: 'lines', //+markers
   name: 'Disponibilidad',
   line: { width: 2, color: '#FC0080' },
   marker: {
@@ -92,7 +92,7 @@ var trend_rendimiento = {
   x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   y: [90.5, 80.3, 50.4, 70.1, 80.5, 90.6, 35.7, 40.9, 55.9, 80.6],
   type: 'line',
-  mode: 'lines+markers',
+  mode: 'lines', //+markers
   name: 'Rendimiento',
   line: { width: 2, color: '#511CFB' },
   marker: {
@@ -107,7 +107,7 @@ var trend_calidad = {
   x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   y: [30.5, 20.3, 0.4, 40.1, 50.5, 40.6, 35.7, 30.9, 55.9, 70.6],
   type: 'line',
-  mode: 'lines+markers',
+  mode: 'lines', //+markers
   name: 'Calidad',
   line: { width: 2, color: '#2E91E5' },
   marker: {
@@ -178,7 +178,7 @@ var layout_trend_oee = {
             color: '#ffffff' // Establece el color de la fuente
         },
         orientation: 'h',
-        y: -0.2
+        y: -0.4
     }
     //margin: { t: 25, r: 10, l: 60 },
     //legend: { orientation: 'h', x: 0.1, y: -0.15 }
@@ -365,7 +365,7 @@ var data_full_oee = [
   {
     type: "indicator",
     mode: "number+gauge",
-    value: 97,
+    value: 10,
     domain: { x: [0.25, 1], y: [0.02, 0.22] },
     title: {
       text: "Calidad",
@@ -504,7 +504,7 @@ var data_performance = [
       font: chart_font,
       increasing: { color: "#1CA71C" }, 
       decreasing: { color: "#FB0D0D" },
-      suffix: ' und'
+      //suffix: ' und'
     },
     gauge: {
       shape: "bullet",
@@ -563,3 +563,70 @@ var layout_performance = {
 };
 
 Plotly.newPlot('performance', data_performance, layout_performance, config_responsive);
+
+//--------------------------------------rendimeinto end-----------------------------------------------
+
+function updateData() {
+  // Realizar una petición AJAX para obtener los datos más recientes
+  fetch('https://industrial-insights-jamesgarcia.pythonanywhere.com/goem/api/ManufacturingData/')  // Reemplaza con la URL correcta de tu vista
+      .then(response => response.json())
+      .then(data => {
+          // Actualizar solo los datos de las trazas
+
+          gCumplimiento.refresh(data['last_compliance']);
+
+          Plotly.update('full_oee', {
+            value: [data.last_quality, data.last_performance, data.last_availability, data.last_oee]
+          });
+
+          Plotly.update('disponibilidad', {
+            values: [[data.last_downtime, data.last_operating_time, data.last_non_operating_time]]
+          });
+
+          Plotly.update('calidad', {
+            y: [[data.last_processed_units], [data.last_accepted_units], [data.last_rejected_units]],
+            text: [[data.last_processed_units + ''], [data.last_accepted_units + ''], [data.last_rejected_units + '']],
+          });
+
+          Plotly.update('performance', {
+            value: [data.last_processed_units],
+            'delta.reference': [data.last_total_units],
+            'gauge.axis.range': [[0, data.last_reference_total_units]],
+            'gauge.threshold.value': [data.last_total_units]
+
+          });
+
+          layout_performance.annotations[0].text = `Estándar ${data.last_total_units} und`;
+          layout_performance.annotations[0].x = data.last_total_units / data.last_reference_total_units;
+          
+          Plotly.relayout('performance', layout_performance);
+
+
+          Plotly.update('trend_oee', {
+            x: [data.last_shift_timestamps],
+            y: [data.last_shift_oee, data.last_shift_availability, data.last_shift_performance, data.last_shift_quality]
+          });
+
+          var valueField = document.getElementById('reference_total_units');
+          //var newValue = Math.floor(Math.random() * 10000); // Ejemplo de nuevo valor aleatorio
+          //valueField.textContent = newValue;
+          valueField.textContent = data.last_reference_total_units + ' und';
+
+          var availability_field = document.getElementById('availability_field');
+          availability_field.textContent = data.last_availability.toFixed(1) + '%';
+
+          var performance_field = document.getElementById('performance_field');
+          performance_field.textContent = data.last_performance.toFixed(1) + '%';
+
+          var quality_field = document.getElementById('quality_field');
+          quality_field.textContent = data.last_quality.toFixed(1) + '%';
+
+          var date_field = document.getElementById('date_field');
+          date_field.textContent = data.formatted_last_shift_start_timestamp + ' - ' + data.formatted_last_shift_end_timestamp;
+
+
+      });
+}
+
+// Actualizar solo los datos cada segundo
+setInterval(updateData, 1000);
