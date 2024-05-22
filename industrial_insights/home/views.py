@@ -1,12 +1,51 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+
+def get_user_info(user):
+    user_groups = user.groups.all()
+    if user.is_authenticated:
+        user_info = {
+            'full_name': user.get_full_name(),
+            'username': user.username,
+            'group': 'Administrators' if user.is_staff else user_groups.first(),
+            'email': user.email
+        }
+    else:
+        user_info = {
+            'full_name': 'Usuario no autenticado',
+            'username': '',
+            'group': '',
+            'email': ''
+        }
+    return user_info
 
 # Create your views here.
 def home(request):
-
-    return render(request,'home/wellcome.html')
+    user = request.user
+    user_info = get_user_info(user)
+    return render(request,'home/wellcome.html', context=user_info)
 
 def access(request):
-    return render(request, "home/sign-in.html")
+    if request.method == 'POST':
+        message = '''
+              <div class="text-center mb-6 mx-auto">
+                <div class="mb-6">
+                  <h2 class="text-body-highlight">¡Error de autenticación!</h2>
+                  <p class="text-body-tertiary">Intente de nuevo <br class="d-lg-none" />O regrese al home.</p>
+                </div>
+                <div class="d-grid"><a class="btn btn-primary" href="{% url 'home' %}"><span class="fas fa-angle-left me-2"></span>Go to home</a></div>
+              </div>
+        '''
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect(home)
+        else:
+            return render(request, 'home/sign-in.html', {'message':message})
+    
+    return render(request, 'home/sign-in.html', {'message':''})
 
 def sign_out(request):
     return render(request, "home/sign-out.html")

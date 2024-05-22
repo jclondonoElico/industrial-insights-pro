@@ -29,7 +29,7 @@ var chart_font = {
 //---------------------------------------Complience - start-----------------------------------------------
 var gCumplimiento = new JustGage({
     id: "cumplimiento",
-    value: 56.1,
+    value: 0.0,
     //width: 200,
     //height: 200,
     min: 0,
@@ -59,8 +59,8 @@ var gCumplimiento = new JustGage({
 
 //---------------------------------------OEE Trends - start-----------------------------------------------
 var trend_oee = {
-  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  y: [80.5, 60.3, 70.4, 90.1, 90.5, 80.6, 75.7, 70.9, 65.9, 50.6],
+  x: [],
+  y: [],
   type: 'line',
   mode: 'lines', //+markers
   name: 'OEE',
@@ -74,8 +74,8 @@ var trend_oee = {
 };
 
 var trend_disponibilidad = {
-  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  y: [70.5, 40.3, 10.4, 50.1, 60.5, 70.6, 55.7, 50.9, 45.9, 30.6],
+  x: [],
+  y: [],
   type: 'line',
   mode: 'lines', //+markers
   name: 'Disponibilidad',
@@ -89,8 +89,8 @@ var trend_disponibilidad = {
 };
 
 var trend_rendimiento = {
-  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  y: [90.5, 80.3, 50.4, 70.1, 80.5, 90.6, 35.7, 40.9, 55.9, 80.6],
+  x: [],
+  y: [],
   type: 'line',
   mode: 'lines', //+markers
   name: 'Rendimiento',
@@ -104,8 +104,8 @@ var trend_rendimiento = {
 };
 
 var trend_calidad = {
-  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  y: [30.5, 20.3, 0.4, 40.1, 50.5, 40.6, 35.7, 30.9, 55.9, 70.6],
+  x: [],
+  y: [],
   type: 'line',
   mode: 'lines', //+markers
   name: 'Calidad',
@@ -190,7 +190,7 @@ Plotly.newPlot('trend_oee', data_trend_oee, layout_trend_oee, config_responsive)
 //--------------------------------------Availability pie - start-----------------------------------------------
 var data_disponibilidad = [{
   type: "pie",
-  values: [35, 351, 49],
+  values: [0, 0, 0],
   labels: ["Inactivo", "Operativo", "No Operativo"],
   //textinfo: "label+percent",
   textinfo: "percent",
@@ -247,7 +247,7 @@ Plotly.newPlot('disponibilidad', data_disponibilidad, layout_disponibilidad, con
 var data_calidad = [
   {
     x: ['Producción'],
-    y: [3752],
+    y: [0],
     width: [0.15],
     name: 'Unidades Producidas',
     marker: {
@@ -257,7 +257,7 @@ var data_calidad = [
         //opacity: 1.0,
     },
     type: 'bar',
-    text: ['3752'],
+    text: [''],
     textposition: 'auto',
     hoverinfo: 'none',
     textfont: {
@@ -268,7 +268,7 @@ var data_calidad = [
   },
   {
     x: ['Producción'],
-    y: [3640],
+    y: [],
     width: [0.15],
     name: 'Unidades Aceptadas',
     marker: {
@@ -277,7 +277,7 @@ var data_calidad = [
         //opacity: 1.0,
     },
     type: 'bar',
-    text: ['3640'],
+    text: [''],
     //textposition: 'outside',
     hoverinfo: 'none',
     textfont: {
@@ -288,7 +288,7 @@ var data_calidad = [
   },
   {
     x: ['Producción'],
-    y: [112],
+    y: [],
     width: [0.15],
     name: 'Unidades Rechazadas',
     marker: {
@@ -297,7 +297,7 @@ var data_calidad = [
         //opacity: 1.0,
     },
     type: 'bar',
-    text: ['112'],
+    text: [''],
     textposition: 'outside',
     hoverinfo: 'none',
     textfont: {
@@ -365,7 +365,7 @@ var data_full_oee = [
   {
     type: "indicator",
     mode: "number+gauge",
-    value: 10,
+    value: 0,
     domain: { x: [0.25, 1], y: [0.02, 0.22] },
     title: {
       text: "Calidad",
@@ -394,7 +394,7 @@ var data_full_oee = [
   {
     type: "indicator",
     mode: "number+gauge",
-    value: 77.1,
+    value: 0,
     domain: { x: [0.25, 1], y: [0.28, 0.48] },
     title: {
       text: "Rendimiento",
@@ -421,7 +421,7 @@ var data_full_oee = [
   {
     type: "indicator",
     mode: "number+gauge",
-    value: 91.9,
+    value: 0,
     domain: { x: [0.25, 1], y: [0.54, 0.74] },
     title: {
       text: "Disponibilidad",
@@ -448,7 +448,7 @@ var data_full_oee = [
   {
     type: "indicator",
     mode: "number+gauge",
-    value: 68.7,
+    value: 0,
     domain: { x: [0.25, 1], y: [0.8, 1.0] },
     title: {
       text: "OEE",
@@ -491,15 +491,43 @@ Plotly.newPlot('full_oee', data_full_oee, layout_full_oee, config_responsive);
 var data_performance = [
   {
     type: "indicator",
+    mode: "number+gauge",
+    value: 0,
+    domain: { x: [0.25, 1.0], y: [0.28, 0.48] },
+    title: {
+      text: "Estándar",
+      font: chart_font,
+    },
+    gauge: {
+      shape: "bullet",
+      axis: {
+        range: [0, 10],
+        visible: false
+      },
+      bgcolor: "#1C2231",
+      bar: {
+        color: "#2E91E5",
+        thickness: 1,
+      },
+      bordercolor: "#1C2231",
+      //borderwidth:3,
+    },
+    number: {
+      //suffix: " und",
+      font: chart_font
+    },
+  },
+  {
+    type: "indicator",
     mode: "number+gauge+delta",
-    value: 3762,
-    domain: { x: [0.25, 1.0], y: [0.5, 0.7] },
+    value: 0,
+    domain: { x: [0.25, 1.0], y: [0.54, 0.74] },
     title: {
       text: "Producidas",
       font: chart_font,
     },
     delta: {
-      reference: 4720, 
+      reference: 0, 
       position: "buttom",
       font: chart_font,
       increasing: { color: "#1CA71C" }, 
@@ -509,7 +537,7 @@ var data_performance = [
     gauge: {
       shape: "bullet",
       axis: {
-        range: [0, 6500],
+        range: [0, 10],
         visible: false
       },
       bgcolor: "#1C2231",
@@ -525,12 +553,12 @@ var data_performance = [
 
         thickness: 0.9,
 
-        value: 4720
+        value: 0
 
       },
     },
     number: {
-      suffix: " und",
+      //suffix: " und",
       font: chart_font
     },
   },
@@ -542,7 +570,7 @@ var layout_performance = {
   margin: { t: 0, r: 15, l: 25, b: 0 },
   paper_bgcolor: "#141824",
   plot_bgcolor: "#141824",
-  annotations: [
+/*   annotations: [
     {
       font: {
         size: 15,
@@ -552,14 +580,14 @@ var layout_performance = {
       showarrow: false,
       xref: 'paper',
       yref: 'paper',
-      x: 4720/6500,
+      x: 0,
       y: 0.42,
-      text: 'Estándar 4720 und',
+      text: 'Estándar 0 und',
       xanchor: 'auto',
       yanchor: 'middle',
       //x: 0.26,
       //y: 5
-    }],
+    }], */
 };
 
 Plotly.newPlot('performance', data_performance, layout_performance, config_responsive);
@@ -589,17 +617,18 @@ function updateData() {
           });
 
           Plotly.update('performance', {
-            value: [data.last_processed_units],
-            'delta.reference': [data.last_total_units],
-            'gauge.axis.range': [[0, data.last_reference_total_units]],
-            'gauge.threshold.value': [data.last_total_units]
+            value: [data.last_total_units, data.last_processed_units],
+            'delta.reference': [data.last_total_units, data.last_total_units],
+            'gauge.axis.range': [[0, data.last_reference_total_units], [0, data.last_reference_total_units]],
+            'gauge.threshold.value': [,data.last_total_units]
 
           });
 
-          layout_performance.annotations[0].text = `Estándar ${data.last_total_units} und`;
-          layout_performance.annotations[0].x = data.last_total_units / data.last_reference_total_units;
+          //layout_performance.annotations[0].text = `Estándar ${data.last_total_units} und`;
+          //layout_performance.annotations[0].x = data.last_total_units / data.last_reference_total_units;
+          //layout_performance.annotations[0].x = data.last_total_units;
           
-          Plotly.relayout('performance', layout_performance);
+          //Plotly.relayout('performance', layout_performance);
 
 
           Plotly.update('trend_oee', {

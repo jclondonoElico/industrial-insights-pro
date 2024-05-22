@@ -122,7 +122,7 @@ Plotly.newPlot('trend_energia', data_trend_energia, layout_trend_energia, config
 //---------------------------------------Eficiencia energética - start-----------------------------------------------
 var gEficiencia = new JustGage({
   id: "eficiencia",
-  value: 89.5,
+  value: 0.0,
   //width: 200,
   //height: 200,
   min: 0,
@@ -153,8 +153,8 @@ var gEficiencia = new JustGage({
 //---------------------------------------Trend Eficiencia energética - start-----------------------------------------------
 var data_trend_eficiencia = [
   {
-    x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-    y: [100.0, 98.5, 97.6, 97.0, 94, 94, 90, 90, 90, 89.5, 89.5],
+    x: [],
+    y: [],
     type: 'line',
     mode: 'lines', //+markers
     name: 'Eficiencia',
@@ -205,15 +205,43 @@ Plotly.newPlot('trend_eficiencia', data_trend_eficiencia, layout_trend_eficienci
 var data_energy_consumption = [
   {
     type: "indicator",
+    mode: "number+gauge",
+    value: 0.0,
+    domain: { x: [0.25, 1.0], y: [0.28, 0.48] },
+    title: {
+      text: "Estándar",
+      font: chart_font,
+    },
+    gauge: {
+      shape: "bullet",
+      axis: {
+        range: [0, 10],
+        visible: false
+      },
+      bgcolor: "#1C2231",
+      bar: {
+        color: "#2E91E5",
+        thickness: 1,
+      },
+      bordercolor: "#1C2231",
+      //borderwidth:3,
+    },
+    number: {
+      suffix: " m3",
+      font: chart_font
+    },
+  },
+  {
+    type: "indicator",
     mode: "number+gauge+delta",
-    value: 11.55,
-    domain: { x: [0.25, 1.0], y: [0.5, 0.7] },
+    value: 0.0,
+    domain: { x: [0.25, 1.0], y: [0.54, 0.74] },
     title: {
       text: "Consumido",
       font: chart_font,
     },
     delta: {
-      reference: 9.4, 
+      reference: 0.0, 
       position: "buttom",
       font: chart_font,
       suffix: ' m3',
@@ -223,7 +251,7 @@ var data_energy_consumption = [
     gauge: {
       shape: "bullet",
       axis: {
-        range: [0, 20.9],
+        range: [0, 10],
         visible: false
       },
       bgcolor: "#1C2231",
@@ -239,7 +267,7 @@ var data_energy_consumption = [
 
         thickness: 0.9,
 
-        value: 9.4
+        value: 0.0
 
       },
     },
@@ -256,20 +284,20 @@ var layout_energy_consumption = {
   margin: { t: 0, r: 15, l: 25, b: 0 },
   paper_bgcolor: "#141824",
   plot_bgcolor: "#141824",
-  annotations: [
+/*   annotations: [
     {
       font: chart_font,
       showarrow: false,
       xref: 'paper',
       yref: 'paper',
-      x: 9.4/20.9,
+      x: 0.0,
       y: 0.42,
-      text: 'Estándar 9.4 kWh',
+      text: 'Estándar 0.0 kWh',
       xanchor: 'auto',
       yanchor: 'middle',
       //x: 0.26,
       //y: 5
-    }],
+    }], */
 };
 
 Plotly.newPlot('energy_consumption', data_energy_consumption, layout_energy_consumption, config_responsive);
@@ -395,19 +423,19 @@ function updateData() {
             y: [data.last_shift_gas_consumption_energy_efficiency]
           });
 
-
+          var maxValue = Math.max(data.last_reference_gas_consumption, data.last_gas_consumption);
           Plotly.update('energy_consumption', {
-            value: [data.last_gas_consumption],
-            'delta.reference': [data.last_standard_gas_consumption],
-            'gauge.axis.range': [[0, data.last_reference_gas_consumption]],
+            value: [data.last_standard_gas_consumption, data.last_gas_consumption],
+            'delta.reference': [,data.last_standard_gas_consumption],
+            'gauge.axis.range': [[0, maxValue], [0, maxValue]],
             'gauge.threshold.value': [data.last_standard_gas_consumption]
 
           });
 
-          layout_energy_consumption.annotations[0].text = `Estándar ${data.last_standard_gas_consumption.toFixed(1)} m3`;
-          layout_energy_consumption.annotations[0].x = data.last_standard_gas_consumption / data.last_reference_gas_consumption;
+          //layout_energy_consumption.annotations[0].text = `Estándar ${data.last_standard_gas_consumption.toFixed(1)} m3`;
+          //layout_energy_consumption.annotations[0].x = data.last_standard_gas_consumption / data.last_reference_gas_consumption;
           
-          Plotly.relayout('energy_consumption', layout_energy_consumption);
+          //Plotly.relayout('energy_consumption', layout_energy_consumption);
 
           Plotly.update('trend_energia', {
             x: [data.last_shift_timestamps],

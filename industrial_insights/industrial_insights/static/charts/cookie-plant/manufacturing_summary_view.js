@@ -29,7 +29,7 @@ var chart_font = {
 //---------------------------------------Complience - start-----------------------------------------------
 var gCumplimiento = new JustGage({
     id: "cumplimiento",
-    value: 56.1,
+    value: 0.0,
     //width: 200,
     //height: 200,
     min: 0,
@@ -59,8 +59,8 @@ var gCumplimiento = new JustGage({
 
 //---------------------------------------OEE Trends - start-----------------------------------------------
 var trend_oee = {
-  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  y: [80.5, 60.3, 70.4, 90.1, 90.5, 80.6, 75.7, 70.9, 65.9, 50.6],
+  x: [],
+  y: [],
   type: 'line',
   mode: 'lines', //+markers
   name: 'OEE',
@@ -74,8 +74,8 @@ var trend_oee = {
 };
 
 var trend_disponibilidad = {
-  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  y: [70.5, 40.3, 10.4, 50.1, 60.5, 70.6, 55.7, 50.9, 45.9, 30.6],
+  x: [],
+  y: [],
   type: 'line',
   mode: 'lines', //+markers
   name: 'Disponibilidad',
@@ -89,8 +89,8 @@ var trend_disponibilidad = {
 };
 
 var trend_rendimiento = {
-  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  y: [90.5, 80.3, 50.4, 70.1, 80.5, 90.6, 35.7, 40.9, 55.9, 80.6],
+  x: [],
+  y: [],
   type: 'line',
   mode: 'lines', //+markers
   name: 'Rendimiento',
@@ -104,8 +104,8 @@ var trend_rendimiento = {
 };
 
 var trend_calidad = {
-  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  y: [30.5, 20.3, 0.4, 40.1, 50.5, 40.6, 35.7, 30.9, 55.9, 70.6],
+  x: [],
+  y: [],
   type: 'line',
   mode: 'lines', //+markers
   name: 'Calidad',
@@ -190,7 +190,7 @@ Plotly.newPlot('trend_oee', data_trend_oee, layout_trend_oee, config_responsive)
 //--------------------------------------Availability pie - start-----------------------------------------------
 var data_disponibilidad = [{
   type: "pie",
-  values: [35, 351, 49],
+  values: [0, 0, 0],
   labels: ["Inactivo", "Operativo", "No Operativo"],
   //textinfo: "label+percent",
   textinfo: "percent",
@@ -247,7 +247,7 @@ Plotly.newPlot('disponibilidad', data_disponibilidad, layout_disponibilidad, con
 var data_calidad = [
   {
     x: ['Producción'],
-    y: [3752],
+    y: [0],
     width: [0.15],
     name: 'Unidades Producidas',
     marker: {
@@ -257,7 +257,7 @@ var data_calidad = [
         //opacity: 1.0,
     },
     type: 'bar',
-    text: ['3752'],
+    text: [''],
     textposition: 'auto',
     hoverinfo: 'none',
     textfont: {
@@ -268,7 +268,7 @@ var data_calidad = [
   },
   {
     x: ['Producción'],
-    y: [3640],
+    y: [],
     width: [0.15],
     name: 'Unidades Aceptadas',
     marker: {
@@ -277,7 +277,7 @@ var data_calidad = [
         //opacity: 1.0,
     },
     type: 'bar',
-    text: ['3640'],
+    text: [''],
     //textposition: 'outside',
     hoverinfo: 'none',
     textfont: {
@@ -288,7 +288,7 @@ var data_calidad = [
   },
   {
     x: ['Producción'],
-    y: [112],
+    y: [],
     width: [0.15],
     name: 'Unidades Rechazadas',
     marker: {
@@ -297,7 +297,7 @@ var data_calidad = [
         //opacity: 1.0,
     },
     type: 'bar',
-    text: ['112'],
+    text: [''],
     textposition: 'outside',
     hoverinfo: 'none',
     textfont: {
