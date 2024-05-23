@@ -72,7 +72,7 @@ var trend_energia_referencia = {
 
 
 
-var data_trend_energia = [trend_energia_consumida, trend_energia_estandar, trend_energia_referencia];
+var data_trend_energia = [trend_energia_consumida, trend_energia_estandar]; //, trend_energia_referencia
 
 var layout_trend_energia = {
   //title: 'Consumida vs Estándar vs Referencia',
@@ -415,6 +415,9 @@ function updateData() {
 
           var last_gas_consumption_index_field = document.getElementById('last_gas_consumption_index_field');
           last_gas_consumption_index_field.textContent = data.last_gas_consumption_index.toFixed(3) + ' m3/und';
+
+          var last_standard_gas_consumption_index_field = document.getElementById('last_standard_gas_consumption_index_field');
+          last_standard_gas_consumption_index_field.textContent = data.last_standard_gas_consumption_index.toFixed(3) + ' m3/und';
 
           gEficiencia.refresh(data['last_gas_consumption_energy_efficiency']);
 

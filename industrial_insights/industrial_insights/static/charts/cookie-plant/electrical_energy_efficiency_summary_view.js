@@ -72,7 +72,7 @@ var trend_energia_referencia = {
 
 
 
-var data_trend_energia = [trend_energia_consumida, trend_energia_estandar, trend_energia_referencia];
+var data_trend_energia = [trend_energia_consumida, trend_energia_estandar];//trend_energia_referencia
 
 var layout_trend_energia = {
   //title: 'Consumida vs Estándar vs Referencia',
@@ -231,7 +231,7 @@ var data_energy_consumption = [
       //borderwidth:3,
     },
     number: {
-      suffix: " kWh",
+      //suffix: "kWh",
       font: chart_font
     },
   },
@@ -248,7 +248,7 @@ var data_energy_consumption = [
       reference: 0.0, 
       position: "buttom",
       font: chart_font,
-      suffix: ' kWh',
+      //suffix: 'kWh',
       increasing: { color: "#FB0D0D" },
       decreasing: { color: "#1CA71C" }
     },
@@ -276,7 +276,7 @@ var data_energy_consumption = [
       },
     },
     number: {
-      suffix: " kWh",
+      //suffix: "kWh",
       font: chart_font
     },
   },
@@ -421,6 +421,9 @@ function updateData() {
           var last_total_electricity_consumption_index_field = document.getElementById('last_total_electricity_consumption_index_field');
           last_total_electricity_consumption_index_field.textContent = data.last_total_electricity_consumption_index.toFixed(3) + ' kWh/und';
 
+          var last_total_standard_electricity_consumption_index_field = document.getElementById('last_total_standard_electricity_consumption_index_field');
+          last_total_standard_electricity_consumption_index_field.textContent = data.last_total_standard_electricity_consumption_index.toFixed(3) + ' kWh/und';
+
           gEficiencia.refresh(data['last_total_electrical_energy_efficiency']);
 
           Plotly.update('trend_eficiencia', {
@@ -444,8 +447,8 @@ function updateData() {
 
           Plotly.update('trend_energia', {
             x: [data.last_shift_timestamps],
-            y: [data.last_shift_total_energy_consumed, data.last_shift_standard_total_energy, data.last_shift_reference_total_energy]
-          });
+            y: [data.last_shift_total_energy_consumed, data.last_shift_standard_total_energy]
+          }); //data.last_shift_reference_total_energy
 
           var date_field = document.getElementById('date_field');
           date_field.textContent = data.formatted_last_shift_start_timestamp + ' - ' + data.formatted_last_shift_end_timestamp;

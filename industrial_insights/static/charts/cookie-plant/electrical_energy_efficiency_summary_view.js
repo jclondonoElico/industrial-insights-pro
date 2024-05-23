@@ -276,7 +276,7 @@ var data_energy_consumption = [
       },
     },
     number: {
-      suffix: " kWh",
+      suffix: "    kWh",
       font: chart_font
     },
   },
