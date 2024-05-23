@@ -72,7 +72,7 @@ var trend_energia_referencia = {
 
 
 
-var data_trend_energia = [trend_energia_consumida, trend_energia_estandar]; //, trend_energia_referencia
+var data_trend_energia = [trend_energia_consumida, trend_energia_estandar]; //, trend_energia_referencia 
 
 var layout_trend_energia = {
   //title: 'Consumida vs Estándar vs Referencia',

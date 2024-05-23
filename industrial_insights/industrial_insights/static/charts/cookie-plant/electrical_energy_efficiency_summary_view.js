@@ -426,7 +426,7 @@ function updateData() {
 
           gEficiencia.refresh(data['last_total_electrical_energy_efficiency']);
 
-          Plotly.update('trend_eficiencia', {
+          Plotly.update('trend_eficiencia', { 
             x: [data.last_shift_timestamps],
             y: [data.last_shift_total_electrical_energy_efficiency]
           });
@@ -446,7 +446,7 @@ function updateData() {
           //Plotly.relayout('energy_consumption', layout_energy_consumption);
 
           Plotly.update('trend_energia', {
-            x: [data.last_shift_timestamps],
+            x: [data.last_shift_timestamps], 
             y: [data.last_shift_total_energy_consumed, data.last_shift_standard_total_energy]
           }); //data.last_shift_reference_total_energy
 
