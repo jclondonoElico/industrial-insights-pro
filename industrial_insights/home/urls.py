@@ -8,4 +8,6 @@ urlpatterns = [
     path('sign-out', views.sign_out, name='sign_out'),
     path('cookie-plant', views.cookie_plant, name='cookie-plant'),
     path('logout/', auth_views.LogoutView.as_view(next_page='sign_out'), name='logout'),
+    path('users_info', views.users_info, name='users_info'),
+    
 ]

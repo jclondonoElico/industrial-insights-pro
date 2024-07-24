@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
 
 def get_user_info(user):
     user_groups = user.groups.all()
@@ -52,3 +53,20 @@ def sign_out(request):
 
 def cookie_plant(request):
     return render(request, "home/cookie-plant-charts.html")
+
+def users_info(request):
+    #message = 'Hola mundo!!! '
+    user = request.user
+    is_authenticated = user.is_authenticated
+    is_anonymous = user.is_anonymous
+    is_active = user.is_active
+    active = 'Activo' if is_active else 'No activo'
+    status = 'Autenticado' if is_authenticated else 'No autenticado'
+    message = f'''
+    Usuario: {user.username} 
+    Email: {user.email} 
+    Estado: {status} 
+    Activo: {active}
+    Permiso: {[permiso.codename for permiso in user.user_permissions.all()]}
+    '''
+    return HttpResponse(message)
