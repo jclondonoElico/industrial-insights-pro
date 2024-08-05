@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
+from rest_framework import viewsets
+from rest_framework.response import Response
+from .models import *
 
 def get_user_info(user):
     user_groups = user.groups.all()
@@ -70,3 +73,17 @@ def users_info(request):
     Permiso: {[permiso.codename for permiso in user.user_permissions.all()]}
     '''
     return HttpResponse(message)
+
+class DataViewSet(viewsets.ViewSet):
+    # Define el nombre base manualmente
+    basename = 'data'
+    def list(self, request):
+        data1 = 0
+        data2 = 0
+        data2 = list(Measurement.objects.filter(pressure__lte=0.2).values_list('pressure', flat=True))
+ 
+        data = {
+            'data1': data1,
+            'data2': data2
+        }
+        return Response(data)

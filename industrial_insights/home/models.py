@@ -11,3 +11,7 @@ class Measurement(models.Model):
 
     def __str__(self):
         return f"{self.timestamp}, {self.pressure}, {self.temperature}, {self.box_units}, {self.kwh}, {self.flow}"
+    
+class Parameter(models.Model):
+    kwh_cost = models.FloatField(null=True, blank=True)
+    m3_cost = models.FloatField(null=True, blank=True)
